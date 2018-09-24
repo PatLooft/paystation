@@ -1,5 +1,10 @@
 package paystation.domain;
 
+/*
+    Pat Looft   - tug16392@temple.edu
+    Chris Huang - tuf61096@temple.edu
+ */
+
 /**
  * Implementation of the pay station.
  *
@@ -24,16 +29,27 @@ public class PayStationImpl implements PayStation {
     private int insertedSoFar;
     private int timeBought;
 
+    private int lastPayment;
+
+    Map <Integer, Integer> record = new HashMap<>();
+
     @Override
     public void addPayment(int coinValue)
             throws IllegalCoinException {
         switch (coinValue) {
-            case 5: break;
-            case 10: break;
-            case 25: break;
+            case 5:
+                record.add(5,1);
+                break;
+            case 10:
+                record.add(10,1);
+                break;
+            case 25:
+                record.add(25,1);
+                break;
             default:
                 throw new IllegalCoinException("Invalid coin: " + coinValue);
         }
+
         insertedSoFar += coinValue;
         timeBought = insertedSoFar / 5 * 2;
     }
@@ -43,19 +59,31 @@ public class PayStationImpl implements PayStation {
         return timeBought;
     }
 
+    //money only collected after call to this
     @Override
     public Receipt buy() {
         Receipt r = new ReceiptImpl(timeBought);
+        lastPayment = timeBought;
         reset();
         return r;
     }
 
     @Override
     public void cancel() {
-        reset();
+        Map <Integer, Integer> record = new HashMap<>();  //key = coin type, quantity returned
+
+
+    }
+
+    public void empty(){
+        int temp = lastPayment;
+        lastPayment = 0;
+        insertedSoFar = 0; //set total to 0
+        return temp; //return last call
     }
     
     private void reset() {
         timeBought = insertedSoFar = 0;
     }
+
 }
