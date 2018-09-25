@@ -55,4 +55,7 @@ public interface PayStation {
      * Cancel the present transaction. Resets the machine for a new transaction.
      */
     public Map cancel();
+
+    /*Returns total amount entered*/
+    public int empty();
 }

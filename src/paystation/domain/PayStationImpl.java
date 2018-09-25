@@ -93,6 +93,7 @@ public class PayStationImpl implements PayStation {
         return temp;
     }
 
+    @Override
     public int empty(){
         int temp = lastPayment;
         lastPayment = 0;

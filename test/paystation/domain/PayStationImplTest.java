@@ -139,5 +139,13 @@ public class PayStationImplTest {
                 10, ps.readDisplay());
     }
 
+    /*Call to empty returns the total amount entered.*/
+    @Test
+    public void emptyReturnsTotal()
+        throws IllegalCoinException{
+        ps.addPayment(5);
+        ps.addPayment(25);
+        assertEquals("Empty returns: " , 30, ps.empty());
+    }
 
 }
