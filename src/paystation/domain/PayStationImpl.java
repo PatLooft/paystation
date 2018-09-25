@@ -1,5 +1,9 @@
 package paystation.domain;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Map.*;
+import java.util.HashMap.*;
 /*
     Pat Looft   - tug16392@temple.edu
     Chris Huang - tuf61096@temple.edu
@@ -31,20 +35,20 @@ public class PayStationImpl implements PayStation {
 
     private int lastPayment;
 
-    Map <Integer, Integer> record = new HashMap<>();
+    HashMap<Integer,Integer> record = new HashMap<>();
 
     @Override
     public void addPayment(int coinValue)
             throws IllegalCoinException {
         switch (coinValue) {
             case 5:
-                record.add(5,1);
+                record.put(5,1);
                 break;
             case 10:
-                record.add(10,1);
+                record.put(10,1);
                 break;
             case 25:
-                record.add(25,1);
+                record.put(25,1);
                 break;
             default:
                 throw new IllegalCoinException("Invalid coin: " + coinValue);
@@ -75,7 +79,7 @@ public class PayStationImpl implements PayStation {
 
     }
 
-    public void empty(){
+    public int empty(){
         int temp = lastPayment;
         lastPayment = 0;
         insertedSoFar = 0; //set total to 0
