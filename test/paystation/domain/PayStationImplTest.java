@@ -15,6 +15,12 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 import org.junit.Before;
 
+import java.util.HashMap.*;
+import java.util.Map.*;
+import java.util.Map;
+import java.util.HashMap;
+
+
 public class PayStationImplTest {
 
     PayStation ps;
@@ -176,4 +182,20 @@ public class PayStationImplTest {
 
         assertEquals("Should return a map with two coins: ", 2, ps.cancel().size() );
     }
+
+
+    /*Call to cancel returns a map containing a mixture of coins entered.*/
+    public void cancelReturnsMix() throws IllegalCoinException{
+        ps.addPayment(5);
+        ps.addPayment(10);
+        ps.addPayment(25);
+
+        Map<Integer,Integer> mixmap = new HashMap<>();
+        mixmap.put(5,1);
+        mixmap.put(10,1);
+        mixmap.put(25,1);
+
+        assertEquals("Cancel should return mix:" , mixmap, ps.cancel());
+    }
+
 }
