@@ -43,12 +43,15 @@ public class PayStationImpl implements PayStation {
         switch (coinValue) {
             case 5:
                 record.put(5,1);
+                lastPayment = 5;
                 break;
             case 10:
                 record.put(10,1);
+                lastPayment = 10;
                 break;
             case 25:
                 record.put(25,1);
+                lastPayment = 25;
                 break;
             default:
                 throw new IllegalCoinException("Invalid coin: " + coinValue);
@@ -87,8 +90,10 @@ public class PayStationImpl implements PayStation {
     public Map cancel() {
         //key = coin type, value = total quantity
         Map temp = (Map)record.clone();
-        timeBought = 0;
-        insertedSoFar = 0;
+        insertedSoFar -= lastPayment;
+        timeBought = insertedSoFar / 5 * 2;
+//        timeBought = 0;
+//        insertedSoFar = 0;
         record.clear();
         return temp;
     }
