@@ -221,4 +221,12 @@ public class PayStationImplTest {
 
         assertEquals("Cancel should clear map: ", empty, ps.cancel());
     }
+
+    /*Call to buy clears the map.*/
+    @Test
+    public void buyClearsMap() throws IllegalCoinException{
+        ps.addPayment(5);
+        ps.addPayment(10);
+        assertEquals("Buy should clear map", ps.buy().value(), 15);
+    }
 }
