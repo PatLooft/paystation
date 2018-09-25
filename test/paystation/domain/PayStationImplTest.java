@@ -198,4 +198,13 @@ public class PayStationImplTest {
         assertEquals("Cancel should return mix:" , mixmap, ps.cancel());
     }
 
+    /*Call to cancel returns a map that does not contain a key for a coin not entered.*/
+    @Test
+    public void cancelNoExtras() throws IllegalCoinException{
+        ps.addPayment(5);
+        ps.addPayment(25);
+        Map temp = null;
+
+        assertEquals("Map should not contain dimes", temp, ps.cancel().get(10));
+    }
 }
