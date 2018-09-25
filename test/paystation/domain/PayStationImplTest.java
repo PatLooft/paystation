@@ -157,4 +157,12 @@ public class PayStationImplTest {
         assertEquals("Cancel should get rid of last payment", 5, ps.empty());
     }
 
+    /*Call to empty resets the total to zero.*/
+    @Test
+    public void emptyResetsToZero() throws IllegalCoinException{
+        ps.addPayment(5);
+        ps.addPayment(10);
+        assertEquals("Empty should return 0: ", ps.empty(), 0);
+    }
+
 }
