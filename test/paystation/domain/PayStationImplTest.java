@@ -227,6 +227,9 @@ public class PayStationImplTest {
     public void buyClearsMap() throws IllegalCoinException{
         ps.addPayment(5);
         ps.addPayment(10);
-        assertEquals("Buy should clear map", ps.buy().value(), 15);
+        ps.buy();
+        Map<Integer,Integer> maps = ps.cancel();
+        Map<Integer,Integer> empty = new HashMap<>();
+        assertEquals("Buy should clear map", empty, maps);
     }
 }
