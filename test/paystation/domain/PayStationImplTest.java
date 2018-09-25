@@ -162,6 +162,7 @@ public class PayStationImplTest {
     public void emptyResetsToZero() throws IllegalCoinException{
         ps.addPayment(5);
         ps.addPayment(10);
+        ps.empty();
         assertEquals("Empty should return 0: ", ps.empty(), 0);
     }
 
