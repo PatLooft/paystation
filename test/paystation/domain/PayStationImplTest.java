@@ -148,4 +148,13 @@ public class PayStationImplTest {
         assertEquals("Empty returns: " , 30, ps.empty());
     }
 
+    /* Canceled entry does not add to the amount returned by empty.*/
+    @Test
+    public void canceledDoesntAdd() throws IllegalCoinException{
+        ps.addPayment(5);
+        ps.addPayment(10);
+        ps.cancel();
+        assertEquals("Cancel should get rid of last payment", 5, ps.empty());
+    }
+
 }
