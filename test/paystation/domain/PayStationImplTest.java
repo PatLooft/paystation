@@ -166,4 +166,14 @@ public class PayStationImplTest {
         assertEquals("Empty should return 0: ", ps.empty(), 0);
     }
 
+    /*Call to cancel returns a map containing one coin entered.*/
+    @Test
+    public void cancelReturnsOneCoin() throws IllegalCoinException{
+        ps.addPayment(10);
+        assertEquals("Should return a map with one coin: ", 1, ps.cancel().size() );
+        ps.addPayment(10);
+        ps.addPayment(5);
+
+        assertEquals("Should return a map with two coins: ", 2, ps.cancel().size() );
+    }
 }
