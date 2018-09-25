@@ -95,7 +95,7 @@ public class PayStationImpl implements PayStation {
 
     @Override
     public int empty(){
-        int temp = lastPayment;
+        int temp = insertedSoFar;
         lastPayment = 0;
         insertedSoFar = 0; //set total to 0
         return temp; //return last call
