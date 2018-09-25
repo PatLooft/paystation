@@ -207,4 +207,18 @@ public class PayStationImplTest {
 
         assertEquals("Map should not contain dimes", temp, ps.cancel().get(10));
     }
+
+    /*Call to cancel clears the map.*/
+    @Test
+    public void cancelClearsMap() throws IllegalCoinException{
+        ps.addPayment(5);
+        ps.addPayment(10);
+        ps.addPayment(25);
+
+        ps.cancel();
+
+        Map<Integer,Integer> empty = new HashMap<>();
+
+        assertEquals("Cancel should clear map: ", empty, ps.cancel());
+    }
 }
