@@ -159,8 +159,11 @@ public class PayStationImplTest {
     public void canceledDoesntAdd() throws IllegalCoinException{
         ps.addPayment(5);
         ps.addPayment(10);
+        ps.buy();
+        ps.addPayment(5);
         ps.cancel();
-        assertEquals("Cancel should get rid of last payment", 5, ps.empty());
+        ps.addPayment(10);
+        assertEquals("Cancel should get rid of last payment", 10, ps.empty());
     }
 
     /*Call to empty resets the total to zero.*/
